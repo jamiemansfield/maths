@@ -1,0 +1,89 @@
+plugins {
+    id 'java'
+    id 'maven'
+
+    id 'net.minecrell.licenser' version '0.3'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+group = 'me.jamiemansfield'
+archivesBaseName = project.name.toLowerCase()
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.flowpowered:flow-math:1.0.3'
+}
+
+license {
+    header = file('HEADER.txt')
+}
+
+processResources {
+    from 'LICENSE.txt'
+}
+
+task javadocJar(type: Jar, dependsOn: 'javadoc') {
+    from javadoc.destinationDir
+    classifier = 'javadoc'
+}
+
+task sourcesJar(type: Jar, dependsOn: 'classes') {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            if (System.getenv('MAVEN_RELEASES') != null) {
+                repository(url: 'file://' + System.getenv('MAVEN_RELEASES'))
+                snapshotRepository(url: 'file://' + System.getenv('MAVEN_SNAPSHOTS'))
+            }
+
+            pom {
+                artifactId = project.archivesBaseName
+
+                project {
+                    name = project.name
+                    description = project.description
+                    packaging = 'jar'
+                    url = 'https://github.com/jamiemansfield/maths'
+
+                    scm {
+                        url = 'https://github.com/jamiemansfield/maths'
+                        connection = 'scm:git:https://github.com/jamiemansfield/maths.git'
+                        developerConnection = 'scm:git:git@github.com:jamiemansfield/maths.git'
+                    }
+
+                    issueManagement {
+                        system = 'GitHub'
+                        url = 'https://github.com/jamiemansfield/maths/issues'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'MIT License'
+                            url = 'http://opensource.org/licenses/MIT'
+                            distribution = 'repo'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.14.1'
+}
