@@ -26,6 +26,9 @@
 package me.jamiemansfield.maths.coord;
 
 import com.flowpowered.math.vector.Vector2i;
+import com.google.common.base.MoreObjects;
+
+import java.util.Objects;
 
 /**
  * Represents a 2-dimensional coordinate, that exists within
@@ -73,6 +76,42 @@ public final class Coordinate2i {
      */
     public Coordinate2i move(final Vector2i vector2i) {
         return new Coordinate2i(this.x + vector2i.getX(), this.y + vector2i.getY());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("x", this.x)
+                .add("y", this.y)
+                .toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Coordinate2i)) {
+            return false;
+        }
+        final Coordinate2i that = (Coordinate2i) obj;
+
+        return this.x == that.x &&
+                this.y == that.y;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.x, this.y);
     }
 
 }

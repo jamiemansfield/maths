@@ -26,6 +26,9 @@
 package me.jamiemansfield.maths.coord;
 
 import com.flowpowered.math.vector.Vector3d;
+import com.google.common.base.MoreObjects;
+
+import java.util.Objects;
 
 /**
  * Represents a 3-dimensional coordinate, that exists within
@@ -85,6 +88,44 @@ public final class Coordinate3d {
      */
     public Coordinate3d move(final Vector3d vector3d) {
         return new Coordinate3d(this.x + vector3d.getX(), this.y + vector3d.getY(), this.z + vector3d.getZ());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("x", this.x)
+                .add("y", this.y)
+                .add("z", this.z)
+                .toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Coordinate3d)) {
+            return false;
+        }
+        final Coordinate3d that = (Coordinate3d) obj;
+
+        return this.x == that.x &&
+                this.y == that.y &&
+                this.z == that.z;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.x, this.y, this.z);
     }
 
 }

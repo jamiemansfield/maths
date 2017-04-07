@@ -17,6 +17,7 @@ repositories {
 }
 
 dependencies {
+    compile 'com.google.guava:guava:21.0'
     compile 'com.flowpowered:flow-math:1.0.3'
 }
 
