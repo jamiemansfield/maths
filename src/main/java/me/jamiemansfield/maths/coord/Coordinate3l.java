@@ -90,9 +90,6 @@ public final class Coordinate3l {
         return new Coordinate3l(this.x + vector3l.getX(), this.y + vector3l.getY(), this.z + vector3l.getZ());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -102,9 +99,6 @@ public final class Coordinate3l {
                 .toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -120,9 +114,6 @@ public final class Coordinate3l {
                 this.z == that.z;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode() {
         return Objects.hash(this.x, this.y, this.z);

@@ -78,9 +78,6 @@ public final class Coordinate2f {
         return new Coordinate2f(this.x + vector2f.getX(), this.y + vector2f.getY());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
@@ -89,9 +86,6 @@ public final class Coordinate2f {
                 .toString();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -106,9 +100,6 @@ public final class Coordinate2f {
                 this.y == that.y;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int hashCode() {
         return Objects.hash(this.x, this.y);
